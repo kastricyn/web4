@@ -1,0 +1,15 @@
+<form [formGroup] = "areaForm">
+  <mat-form-field appearance="fill">
+    <mat-label>X &#8712; [-5;5]</mat-label>
+    <input matInput formControlName="xControl" >
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Y &#8712; [-3;5]</mat-label>
+    <input matInput formControlName = "yControl">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>R &#8712; [-5;5]</mat-label>
+    <input matInput formControlName = "rControl">
+  </mat-form-field>
+  <button mat-flat-button color="accent" (click)="check()" [disabled] = "!canCheck">Check</button>
+</form>

@@ -1,0 +1,17 @@
+@import "src/assets/scss/variables";
+
+:host {
+  form {
+    display: flex;
+    flex-direction: column;
+
+    max-width: 204px;
+
+    margin: auto;
+    padding: 10px;
+
+    border-radius: 15px;
+    border:dotted 2px $primary;
+  }
+}
+

@@ -1,0 +1,13 @@
+<header *ngIf="!isAuth">
+  <address>
+    Выполнил: Кастрицын Максим Игоревич
+  </address>
+  <p class="variant">Вариант №4072</p>
+</header>
+<header *ngIf = "isAuth">
+  <span class="logOut">
+    Выйти
+  </span>
+  <p>Добро пожаловать, {{user.name}}!</p>
+</header>
+

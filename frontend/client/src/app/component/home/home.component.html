@@ -1,0 +1,8 @@
+<div *ngIf="authenticated()">
+  <app-check-area></app-check-area>
+  <app-check-area-form></app-check-area-form>
+  <app-result-table></app-result-table>
+</div>
+<div *ngIf="!authenticated()">
+  <p>Login before, please</p>
+</div>

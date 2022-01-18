@@ -1,0 +1,25 @@
+@import 'src/assets/scss/variables';
+
+header {
+  position: fixed;
+  background-color: #FFF;
+  z-index: 10;
+  width: 100%;
+  border-bottom: 1px solid $primary;
+  font-family: sans-serif;
+  font-size: 1em;
+
+  p{
+    margin-left: 10px;
+  }
+
+  address, .logOut {
+    position: absolute;
+    top: 16px;
+    right: 10px;
+  }
+
+  .variant {
+    text-align: center;
+  }
+}
