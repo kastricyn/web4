@@ -3,11 +3,10 @@ package ru.kastricyn.web4.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.kastricyn.web4.dto.PointDto;
+import ru.kastricyn.web4.dto.NewPointDto;
 import ru.kastricyn.web4.dto.RestResponseDto;
 import ru.kastricyn.web4.entity.Point;
 import ru.kastricyn.web4.entity.User;
@@ -43,7 +42,7 @@ public class PointController {
      * @return true -- точка добавлена, false -- что-то пошло не так
      */
     @PostMapping
-    public boolean addPoint(@RequestBody @Valid PointDto pointDto) {
+    public boolean addPoint(@RequestBody @Valid NewPointDto pointDto) {
         return false; //todo
     }
 }

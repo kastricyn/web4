@@ -10,6 +10,7 @@ import org.hibernate.Hibernate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.util.Objects;
@@ -26,7 +27,8 @@ public class Point implements Serializable {
     private long id;
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "USER_ID", nullable = false)
     private User user;
 
     private double x;

@@ -23,7 +23,6 @@ import java.util.Objects;
 @NoArgsConstructor
 
 @Entity
-@SessionScope
 public class User implements Serializable {
     @Id
     @GeneratedValue
@@ -34,11 +33,6 @@ public class User implements Serializable {
 
     @Column(nullable = false)
     private char[] password;
-
-    @Column(nullable = false)
-    @OneToMany
-    @ToString.Exclude
-    private Deque<Point> points;
 
     @Override
     public boolean equals(Object o) {

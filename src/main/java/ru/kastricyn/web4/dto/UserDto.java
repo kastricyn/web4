@@ -1,12 +1,16 @@
 package ru.kastricyn.web4.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
-@Data
+@Getter
+@Setter
 public class UserDto implements Serializable {
-    private final long id;
-    private final String login;
-    private final PointDto[] points;
+    @NotBlank
+    private String login;
+    @NotBlank
+    private String password;
 }
