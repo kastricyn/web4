@@ -1,4 +1,4 @@
-package ru.kastricyn.web4.restController;
+package ru.kastricyn.web4.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

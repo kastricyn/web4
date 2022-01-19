@@ -32,4 +32,9 @@ public class MyUserService implements UserService {
     public boolean logout(User user) {
         return false;
     }
+
+    @Override
+    public User getUser(long userId) {
+        return null;
+    }
 }

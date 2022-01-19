@@ -3,7 +3,7 @@ package ru.kastricyn.web4.dto;
 import java.io.Serializable;
 
 
-public class RestResponseDto<T extends Serializable> implements Serializable {
+public class RestResponseDto<T> implements Serializable {
     private boolean isOk = false; //удачно ли завершился запрос и составлен ответ, false если ошибка
     private T value;
 

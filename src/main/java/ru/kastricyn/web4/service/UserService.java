@@ -1,5 +1,6 @@
 package ru.kastricyn.web4.service;
 
+import org.jetbrains.annotations.Nullable;
 import ru.kastricyn.web4.entity.User;
 
 public interface UserService {
@@ -21,4 +22,7 @@ public interface UserService {
     boolean register(User user);
 
     boolean logout(User user);
+
+    @Nullable
+    User getUser(long userId);
 }
