@@ -10,14 +10,8 @@ import { finalize } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private app: AuthService, private http: HttpClient, private router: Router) {
-    this.app.authenticate(undefined, undefined);
+  constructor(private authService: AuthService, private http: HttpClient, private router: Router) {
+    this.authService.authenticate(undefined, undefined);
   }
 
-  logout() {
-    this.http.post('logout', {}).pipe(finalize(() => {
-      this.app.authenticated = false;
-      this.router.navigateByUrl('/login');
-    })).subscribe();
-  }
 }

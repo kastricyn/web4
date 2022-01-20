@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -21,6 +22,7 @@ import java.util.Objects;
 @NoArgsConstructor
 
 @Entity
+@Table(name = "WEB4_POINTS")
 public class Point implements Serializable {
     @Id
     @GeneratedValue

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.kastricyn.web4.entity.User;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/user")
 @CrossOrigin
@@ -49,4 +51,8 @@ public class UserController {
         return false;
     }
 
+    @RequestMapping()
+    public Principal user(Principal user) {
+        return user;
+    }
 }

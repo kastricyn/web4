@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.kastricyn.web4.dto.NewPointDto;
-import ru.kastricyn.web4.dto.RestResponseDto;
 import ru.kastricyn.web4.entity.Point;
 import ru.kastricyn.web4.entity.User;
 import ru.kastricyn.web4.service.PointService;
@@ -31,7 +30,7 @@ public class PointController {
      * @return список всех точек пользователя, если пользователя нет
      */
     @GetMapping("/{userId}")
-    public RestResponseDto<? extends List<Point>> getPointByUser(@PathVariable long userId) {
+    public List<Point> getPointByUser(@PathVariable long userId) {
         User user = userService.getUser(userId);
         if (user == null)
             return new RestResponseDto<>(false);
