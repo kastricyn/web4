@@ -9,11 +9,9 @@ import ru.kastricyn.web4.service.UserService;
 
 @Service
 public class PointMapper {
-    private final PointService pointService;
     private final UserService userService;
 
-    public PointMapper(PointService pointService, UserService userService) {
-        this.pointService = pointService;
+    public PointMapper(UserService userService) {
         this.userService = userService;
     }
 
@@ -22,7 +20,7 @@ public class PointMapper {
         target.setX(point.getX());
         target.setY(point.getY());
         target.setR(point.getR());
-        target.setResult(pointService.checkPointInArea(target));
+        target.setResult(PointService.checkPointInArea(target));
         target.setUserEntity(userService.getUserEntity(userId));
         return target;
     }
