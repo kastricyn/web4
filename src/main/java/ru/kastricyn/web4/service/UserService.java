@@ -1,28 +1,28 @@
 package ru.kastricyn.web4.service;
 
 import org.jetbrains.annotations.Nullable;
-import ru.kastricyn.web4.entity.User;
+import ru.kastricyn.web4.entity.UserEntity;
 
 public interface UserService {
 
     /**
      * Пытается авторизовать.
      *
-     * @param user
+     * @param userEntity
      * @return true -- успешная авторизация; false -- неуспешная
      */
-    boolean auth(User user);
+    boolean auth(UserEntity userEntity);
 
     /**
      * Пытается зарегистрировать.
      *
-     * @param user
+     * @param userEntity
      * @return true -- успешная регистрация; false -- неуспешная
      */
-    boolean register(User user);
+    boolean register(UserEntity userEntity);
 
-    boolean logout(User user);
+    boolean logout(UserEntity userEntity);
 
     @Nullable
-    User getUser(long userId);
+    UserEntity getUser(long userId);
 }

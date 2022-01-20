@@ -6,11 +6,20 @@ import lombok.Setter;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
-@Getter
-@Setter
-public class UserDto implements Serializable {
-    @NotBlank
-    private String login;
-    @NotBlank
-    private String password;
+public abstract class UserDto implements Serializable {
+    @Getter
+    @Setter
+    public static class In {
+        @NotBlank
+        private String login;
+        @NotBlank
+        private String password;
+    }
+
+    @Getter
+    @Setter
+    public static class Out {
+        private long id;
+        private String login;
+    }
 }

@@ -1,8 +1,8 @@
 package ru.kastricyn.web4.service;
 
 import org.springframework.stereotype.Service;
-import ru.kastricyn.web4.entity.Point;
-import ru.kastricyn.web4.entity.User;
+import ru.kastricyn.web4.entity.PointEntity;
+import ru.kastricyn.web4.entity.UserEntity;
 
 import java.util.List;
 import java.util.Random;
@@ -10,22 +10,22 @@ import java.util.Random;
 @Service
 public class MyPointService implements PointService {
     @Override
-    public boolean checkPointInArea(Point point) {
+    public boolean checkPointInArea(PointEntity pointEntity) {
         return new Random().nextBoolean();
     }
 
     @Override
-    public void addPoint(Point point) {
+    public void addPoint(PointEntity pointEntity) {
 
     }
 
     @Override
-    public List<Point> getAllPoint() {
+    public List<PointEntity> getAllPoint() {
         return null;
     }
 
     @Override
-    public List<Point> getAllPointByUser(User user) {
+    public List<PointEntity> getAllPointByUser(UserEntity userEntity) {
         return null;
     }
 }

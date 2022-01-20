@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.kastricyn.web4.entity.User;
+import ru.kastricyn.web4.entity.UserEntity;
 
 import java.security.Principal;
 
@@ -27,27 +27,27 @@ public class UserController {
     /**
      * Пытается авторизовать.
      *
-     * @param user
+     * @param userEntity
      * @return true -- успешная авторизация; false -- неуспешная
      */
     @PostMapping("/auth")
-    public boolean auth(User user) {
+    public boolean auth(UserEntity userEntity) {
         return false;
     }
 
     /**
      * Пытается зарегистрировать.
      *
-     * @param user
+     * @param userEntity
      * @return true -- успешная регистрация; false -- неуспешная
      */
     @PostMapping("/add")
-    boolean register(User user) {
+    boolean register(UserEntity userEntity) {
         return false;
     }
 
     @PostMapping("")
-    boolean logout(User user) {
+    boolean logout(UserEntity userEntity) {
         return false;
     }
 

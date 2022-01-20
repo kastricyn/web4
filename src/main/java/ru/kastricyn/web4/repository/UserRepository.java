@@ -2,9 +2,9 @@ package ru.kastricyn.web4.repository;
 
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.CrudRepository;
-import ru.kastricyn.web4.entity.User;
+import ru.kastricyn.web4.entity.UserEntity;
 
 @EnableJpaRepositories
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends CrudRepository<UserEntity, Long> {
     boolean existsDistinctByLoginIgnoreCase(String login);
 }

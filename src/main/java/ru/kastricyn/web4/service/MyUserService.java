@@ -1,7 +1,7 @@
 package ru.kastricyn.web4.service;
 
 import org.springframework.stereotype.Service;
-import ru.kastricyn.web4.entity.User;
+import ru.kastricyn.web4.entity.UserEntity;
 
 @Service
 public class MyUserService implements UserService {
@@ -9,32 +9,32 @@ public class MyUserService implements UserService {
     /**
      * Пытается авторизовать.
      *
-     * @param user
+     * @param userEntity
      * @return true -- успешная авторизация; false -- неуспешная
      */
     @Override
-    public boolean auth(User user) {
+    public boolean auth(UserEntity userEntity) {
         return false;
     }
 
     /**
      * Пытается зарегистрировать.
      *
-     * @param user
+     * @param userEntity
      * @return true -- успешная регистрация; false -- неуспешная
      */
     @Override
-    public boolean register(User user) {
+    public boolean register(UserEntity userEntity) {
         return false;
     }
 
     @Override
-    public boolean logout(User user) {
+    public boolean logout(UserEntity userEntity) {
         return false;
     }
 
     @Override
-    public User getUser(long userId) {
+    public UserEntity getUser(long userId) {
         return null;
     }
 }

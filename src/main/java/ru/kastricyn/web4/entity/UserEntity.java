@@ -1,19 +1,17 @@
 package ru.kastricyn.web4.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Getter
@@ -22,28 +20,24 @@ import java.util.Objects;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "WEB4_POINTS")
-public class Point implements Serializable {
+@Table(name = "WEB4_USERS")
+public class UserEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @JsonIgnore
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "USER_ID", nullable = false)
-    private User user;
+    @Column(nullable = false, unique = true)
+    private String login;
 
-    private double x;
-    private double y;
-    private double r;
-    private boolean result;
+    @Column(nullable = false)
+    private String password;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Point point = (Point) o;
-        return Objects.equals(id, point.id);
+        UserEntity userEntity = (UserEntity) o;
+        return Objects.equals(id, userEntity.id);
     }
 
     @Override
