@@ -32,7 +32,7 @@ public interface UserService {
     UserDto.Out getUserDto(String login);
 
     @NonNull
-    TokenDto login(UserDto.In user) throws WrongPasswordException, NameNotFoundException;
+    TokenDto login(UserDto.In user) throws WrongPasswordException;
 
     @NonNull
     UserDto.Out register(UserDto.In user) throws UserAlreadyExistException;

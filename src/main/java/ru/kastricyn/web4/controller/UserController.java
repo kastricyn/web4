@@ -22,11 +22,11 @@ public class UserController {
 
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public TokenDto login(@RequestBody @Valid UserDto.In userDTO) {
-        return userService.auth(userDTO);
+        return userService.login(userDTO);
     }
 
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public UserDTO registration(@RequestBody @Valid UserDTO userDTO) {
-        return authorizationService.register(userDTO);
+    public UserDto.Out registration(@RequestBody @Valid UserDto.In user) {
+        return userService.register(user);
     }
 }

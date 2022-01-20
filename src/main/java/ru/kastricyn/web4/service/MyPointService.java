@@ -43,7 +43,7 @@ public class MyPointService implements PointService {
     }
 
     @Override
-    public List<PointDto> getAll(UserEntity user) {
+    public List<PointDto> getAllByCurrentUser() {
         return pointRepository.getAllByUserEntity(userService.getCurrentUserEntity())
                 .stream()
                 .map(mapper::getPointDtoFromPointEntity)

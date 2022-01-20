@@ -13,5 +13,5 @@ public interface PointService {
     @NonNull
     PointDto addPoint(NewPointDto point);
 
-    List<PointDto> getAll(UserEntity user);
+    List<PointDto> getAllByCurrentUser();
 }
