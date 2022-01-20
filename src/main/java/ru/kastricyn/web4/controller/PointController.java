@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/shots")
+@RequestMapping("/api/points")
 public class PointController {
     private final PointService pointService;
 

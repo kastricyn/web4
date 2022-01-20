@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.kastricyn.web4.dto.TokenDto;
 import ru.kastricyn.web4.dto.UserDto;
 import ru.kastricyn.web4.service.AuthService;
-import ru.kastricyn.web4.service.UserService;
 
 import javax.validation.Valid;
 

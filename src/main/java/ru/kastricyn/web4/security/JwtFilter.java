@@ -20,8 +20,11 @@ import java.util.List;
 
 public class JwtFilter extends OncePerRequestFilter {
     private final JwtTokenProvider jwtTokenProvider;
-    private final AntPathRequestMatcher filterPath = new AntPathRequestMatcher("/swagger-ui/**");
     private final List<AntPathRequestMatcher> noFilterPath = Arrays.asList(
+            new AntPathRequestMatcher("/*"),
+            new AntPathRequestMatcher("/index.html"),
+            new AntPathRequestMatcher("/login"),
+            new AntPathRequestMatcher("/resources/**"),
             new AntPathRequestMatcher("/api/users/**"),
             new AntPathRequestMatcher("/echo"));
 
