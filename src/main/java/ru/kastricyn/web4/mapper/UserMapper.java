@@ -21,7 +21,7 @@ public class UserMapper {
         return target;
     }
 
-    public CustomUserDetails fromEntityToDetails(UserEntity userEntity) {
+    public CustomUserDetails getCustomUserDetailsFromUserEntity(UserEntity userEntity) {
         CustomUserDetails target = new CustomUserDetails();
         target.setId(userEntity.getId());
         target.setUsername(userEntity.getLogin());

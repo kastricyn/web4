@@ -1,6 +1,5 @@
 package ru.kastricyn.web4.security;
 
-import lombok.NonNull;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -32,9 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService {
      */
     @Override
     public CustomUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity user = userService.getUser(username);
-        if(user==null)
-            throw new UsernameNotFoundException("");
-        return userMapper.fromEntityToDetails(user);
+        UserEntity user = userService.getUserEntity(username);
+        return userMapper.getCustomUserDetailsFromUserEntity(user);
     }
 }

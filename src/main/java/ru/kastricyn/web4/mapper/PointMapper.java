@@ -23,7 +23,7 @@ public class PointMapper {
         target.setY(point.getY());
         target.setR(point.getR());
         target.setResult(pointService.checkPointInArea(target));
-        target.setUserEntity(userService.getUser(userId));
+        target.setUserEntity(userService.getUserEntity(userId));
         return target;
     }
 
