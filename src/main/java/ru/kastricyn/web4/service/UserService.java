@@ -32,12 +32,6 @@ public interface UserService {
     UserDto.Out getUserDto(String login);
 
     @NonNull
-    TokenDto login(UserDto.In user) throws WrongPasswordException;
-
-    @NonNull
-    UserDto.Out register(UserDto.In user) throws UserAlreadyExistException;
-
-    @NonNull
     UserDto.Out create(UserDto.In user);
 
     UserEntity create(UserEntity user);

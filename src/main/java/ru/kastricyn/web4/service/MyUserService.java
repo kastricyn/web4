@@ -24,16 +24,10 @@ import javax.validation.ConstraintViolationException;
 
 @Service
 public class MyUserService implements UserService {
-    private final AuthenticationManager authenticationManager;
-    private final JwtTokenProvider jwtTokenProvider;
-    private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final UserMapper mapper;
 
-    public MyUserService(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, PasswordEncoder passwordEncoder, UserRepository userRepository, UserMapper mapper) {
-        this.authenticationManager = authenticationManager;
-        this.jwtTokenProvider = jwtTokenProvider;
-        this.passwordEncoder = passwordEncoder;
+    public MyUserService(UserRepository userRepository, UserMapper mapper) {
         this.userRepository = userRepository;
         this.mapper = mapper;
     }
@@ -71,31 +65,6 @@ public class MyUserService implements UserService {
     @Override
     public @NonNull UserDto.Out getUserDto(String login) {
         return mapper.getUserDtoFromUserEntity(getUserEntity(login));
-    }
-
-    @Override
-    public @NonNull TokenDto login(UserDto.In user) throws WrongPasswordException {
-        try {
-            Authentication authentication = authenticationManager
-                    .authenticate(new UsernamePasswordAuthenticationToken(user.getLogin(), user.getPassword()));
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            String token = jwtTokenProvider.createToken(getUserEntity(user.getLogin()).getId(),
-                    user.getLogin());
-            return new TokenDto(token);
-        } catch (BadCredentialsException ex) {
-            throw new WrongPasswordException("Неверный пароль");
-        }
-    }
-
-    @Override
-    public @NonNull UserDto.Out register(UserDto.In user) throws UserAlreadyExistException {
-        try {
-            String password = user.getPassword();
-            user.setPassword(passwordEncoder.encode(password));
-            return create(user);
-        } catch (ConstraintViolationException e) {
-            throw new UserAlreadyExistException("Уже существует пользователь с логином " + user.getLogin());
-        }
     }
 
     @Override
