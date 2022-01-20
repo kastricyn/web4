@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/point")
+@RequestMapping("/api/point")
 public class PointController {
     private final UserService userService;
     private final PointService pointService;
@@ -31,10 +31,7 @@ public class PointController {
      */
     @GetMapping("/{userId}")
     public List<PointEntity> getPointByUser(@PathVariable long userId) {
-        UserEntity userEntity = userService.getUser(userId);
-        if (userEntity == null)
-            return new RestResponseDto<>(false);
-        else return new RestResponseDto<>(true, pointService.getAllPointByUser(userEntity));
+        return null;
     }
 
     /**

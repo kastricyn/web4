@@ -11,8 +11,7 @@ import ru.kastricyn.web4.entity.UserEntity;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/user")
-@CrossOrigin
+@RequestMapping("/api/users")
 public class UserController {
     /**
      * Проверяет есть ли уже в системе пользователь с таким userName

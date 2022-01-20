@@ -25,4 +25,7 @@ public interface UserService {
 
     @Nullable
     UserEntity getUser(long userId);
+
+    @Nullable
+    UserEntity getUser(String login);
 }

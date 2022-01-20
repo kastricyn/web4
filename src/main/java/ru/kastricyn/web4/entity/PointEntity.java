@@ -1,7 +1,5 @@
 package ru.kastricyn.web4.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,7 +27,6 @@ public class PointEntity implements Serializable {
     @GeneratedValue
     private long id;
 
-    @JsonIgnore
     @ManyToOne(optional = false)
     @JoinColumn(name = "USER_ID", nullable = false)
     private UserEntity userEntity;

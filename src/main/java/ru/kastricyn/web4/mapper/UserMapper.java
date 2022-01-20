@@ -3,6 +3,7 @@ package ru.kastricyn.web4.mapper;
 import org.springframework.stereotype.Service;
 import ru.kastricyn.web4.dto.UserDto;
 import ru.kastricyn.web4.entity.UserEntity;
+import ru.kastricyn.web4.security.CustomUserDetails;
 
 @Service
 public class UserMapper {
@@ -17,6 +18,14 @@ public class UserMapper {
         UserDto.Out target = new UserDto.Out();
         target.setLogin(user.getLogin());
         target.setId(user.getId());
+        return target;
+    }
+
+    public CustomUserDetails fromEntityToDetails(UserEntity userEntity) {
+        CustomUserDetails target = new CustomUserDetails();
+        target.setId(userEntity.getId());
+        target.setUsername(userEntity.getLogin());
+        target.setPassword(userEntity.getPassword());
         return target;
     }
 }
