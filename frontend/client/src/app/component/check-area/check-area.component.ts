@@ -18,7 +18,8 @@ export class CheckAreaComponent implements OnInit {
     setInterval(() => {
       // @ts-ignore
       this.drawer?.r = this.pointService.currentPoint.r
-      console.log("Update r = " + this.drawer?.r)
+      // @ts-ignore
+      this.drawer?.points = this.pointService.points
       // @ts-ignore
       this.drawer.draw()
     }, 250)

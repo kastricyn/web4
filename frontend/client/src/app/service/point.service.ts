@@ -8,7 +8,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 export class PointService {
   private readonly host: string = "http://localhost:8080/";
   private readonly url: string = "api/points";
-  private _currentPoint: Point = new Point(0, 0, -4)
+  private _currentPoint: Point = new Point(0, 0, 2)
 
   points: Point[] = Array()
 
