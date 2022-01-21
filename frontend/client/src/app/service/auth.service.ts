@@ -13,8 +13,6 @@ export class AuthService {
   }
 
   private readonly host: string = "http://localhost:8080/";
-  private readonly url: string = "api/users/login";
-  private readonly urlTest: string = "echo";
   private _authenticated: boolean = false;
   private _user: User = new User("")
   private _answerToUser: string = "";
@@ -22,31 +20,22 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {
   }
 
-  authenticate(credentials: { login: string; password: string; } | undefined, callback: { (): void; (): any; } | undefined): number {
-    let answerCode = 0
-    console.log("login start")
-    const headers = new HttpHeaders(credentials ? {
-      authorization: 'Basic ' + btoa(credentials.login + ':' + credentials.password)
-    } : {});
+  authenticate(credentials: { login: string; password: string; } | undefined, callback: { (): void; (): any; } | undefined) {
 
     this.http.post(this.host + 'api/users/loginWithRegister', credentials).subscribe(response => {
       // @ts-ignore
       if (response["token"]) {
         this.user.login = credentials?.login ? credentials.login : ""
-
         this._authenticated = true;
         // @ts-ignore
-        co.setItem('auth_token', response.token);
-
+        localStorage.setItem('auth_token', response.token);
       } else {
         this._authenticated = false;
       }
       return callback && callback();
     }, error => {
-        answerCode = error.status
-      console.log(error.status)
+      return callback && callback();
     });
-    return answerCode;
   }
 
   logout(): void {

@@ -16,13 +16,16 @@ export class LoginComponent {
   }
 
   clickHandler() {
-    let httpCode: number = this.authService.authenticate(this.credentials, () => {
+    this.authService.authenticate(this.credentials, () => {
       if (this.authService.authenticated)
         this.router.navigateByUrl('');
+      else{
+        this.showMessageCheckLoginOrPassword = true
+        // this.router.navigateByUrl('/login');
+      }
     });
-    console.log(httpCode)
-    if (httpCode == 401)
-      this.showMessageCheckLoginOrPassword = true
+
+
   }
 
 }

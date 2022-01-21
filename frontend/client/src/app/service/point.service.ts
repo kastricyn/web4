@@ -15,22 +15,26 @@ export class PointService {
   }
 
   getAllPoints(): Point[] {
-    this.http.get(this.host + this.url).subscribe((result) => {
+    this.http.get(this.host + this.url, {
+      // @ts-ignore
+      headers: new HttpHeaders().set('Authorization', "Bearer " + localStorage.getItem("auth_token")),
+    }).subscribe((result) => {
       // @ts-ignore
       this.points = result;
-
     });
     return this.points;
   }
 
   checkPointInArea(point: Point) {
 
-    // @ts-ignore
-
     console.log(point)
-    // @ts-ignore
-    this.http.post(this.host + this.url, point, {      headers: new HttpHeaders().set('Authorization', localStorage.getItem("auth_token")),
-    }).subscribe(resp => console.log("Запрос отправлен"))
+
+
+    this.http.post(this.host + this.url, point, {
+      // @ts-ignore
+      headers: new HttpHeaders().set('Authorization', "Bearer " + localStorage.getItem("auth_token")),
+      // @ts-ignore
+    }).subscribe(resp => this.points.push(resp))
   }
 
 }
