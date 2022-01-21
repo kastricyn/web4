@@ -1,10 +1,10 @@
 export class User {
   private _id: string;
-  private _name: string;
+  private _login: string;
 
   constructor(id: string, name: string) {
     this._id = id;
-    this._name = name;
+    this._login = name;
   }
 
 
@@ -12,7 +12,7 @@ export class User {
     return this._id;
   }
 
-  get name(): string {
-    return this._name;
+  get login(): string {
+    return this._login;
   }
 }

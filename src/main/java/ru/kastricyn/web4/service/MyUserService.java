@@ -69,7 +69,7 @@ public class MyUserService implements UserService {
 
     @Override
     public @NonNull UserDto.Out create(UserDto.In user) {
-        return mapper.getUserDtoFromUserEntity(mapper.getUserEntityFromUserDto(user));
+        return mapper.getUserDtoFromUserEntity(create(mapper.getUserEntityFromUserDto(user)));
     }
 
     @Override
