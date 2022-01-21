@@ -12,6 +12,7 @@ export class CheckAreaFormComponent implements OnInit {
   get checkPointService(): PointService {
     return this._pointService;
   }
+
   areaForm: FormGroup;
   private _canCheck: boolean = true
 
@@ -30,7 +31,14 @@ export class CheckAreaFormComponent implements OnInit {
   ))
 
   ngOnInit(): void {
-    this.areaForm.statusChanges.subscribe((status) => {this.canCheck = "VALID"===status});
+    this.areaForm.statusChanges.subscribe((status) => {
+      this.canCheck = "VALID" === status
+    });
+    this.areaForm.get("rControl")?.valueChanges.subscribe(() => {
+      if ("VALID" === this.areaForm.get("rControl")?.status)
+        this._pointService.currentPoint.r = this.areaForm.get("rControl")?.value
+    });
+
   }
 
   get canCheck(): boolean {

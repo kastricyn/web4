@@ -1,21 +1,41 @@
 import {Injectable} from '@angular/core';
 import {Point} from "../model/point";
+import {PointService} from "./point.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DrawContextService {
+  get points(): Point[] {
+    return this._points;
+  }
+
+  set points(value: Point[]) {
+    this._points = value;
+  }
+
+  get r(): number {
+    return this._r;
+  }
+
+  set r(value: number) {
+    this._r = value;
+  }
   readonly ctx: CanvasRenderingContext2D
   readonly width: number
   readonly height: number
+  private _points!: Point[];
+  private _r: number = 2
 
-  constructor(readonly canvas: HTMLCanvasElement) {
+  constructor(readonly canvas: HTMLCanvasElement, private pointService: PointService) {
     const tmp = canvas.getContext("2d")
     if (tmp == null)
       throw new Error("Canvas.getContext('2d')==null")
     this.ctx = tmp
     this.width = canvas.width
     this.height = canvas.height
+    this.points = pointService.points
+    this.r = pointService.currentPoint.r
   }
 
   drawAxes(canvas: HTMLCanvasElement = this.canvas, color: string = "black"): void {
@@ -130,17 +150,17 @@ export class DrawContextService {
     }
   }
 
-  draw(points: Point[] = [], ctx: CanvasRenderingContext2D = this.ctx, w: number = ctx.canvas.width, h: number = ctx.canvas.height): void {
+  draw(points: Point[] = this._points, ctx: CanvasRenderingContext2D = this.ctx, w: number = ctx.canvas.width, h: number = ctx.canvas.height, r: number = this._r): void {
     ctx.font = "14px Verdana";
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, w, h);
     ctx.fillStyle = "#359aff";
-    this.drawArea(ctx, w, h);
+    this.drawArea(ctx, w, h, r);
     this.drawAxes(ctx.canvas, "black");
     this.drawAllPoint(points, ctx, w, h);
   }
 
-  drawArea(ctx: CanvasRenderingContext2D = this.ctx, w: number = ctx.canvas.width, h: number = ctx.canvas.height, r: number = -2): void {
+  drawArea(ctx: CanvasRenderingContext2D = this.ctx, w: number = ctx.canvas.width, h: number = ctx.canvas.height, r: number = 2): void {
     //Радиусы большого эллипса
     ctx.fillStyle = "#359aff";
     ctx.save();

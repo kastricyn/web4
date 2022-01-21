@@ -8,6 +8,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 export class PointService {
   private readonly host: string = "http://localhost:8080/";
   private readonly url: string = "api/points";
+  private _currentPoint: Point = new Point(0, 0, -4)
 
   points: Point[] = Array()
 
@@ -34,4 +35,11 @@ export class PointService {
     }).subscribe();
   }
 
+  get currentPoint(): Point {
+    return this._currentPoint;
+  }
+
+  set currentPoint(value: Point) {
+    this._currentPoint = value;
+  }
 }
