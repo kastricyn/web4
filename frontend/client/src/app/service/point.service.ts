@@ -12,6 +12,7 @@ export class PointService {
   points: Point[] = Array()
 
   constructor(private http: HttpClient) {
+    this.getAllPoints()
   }
 
   getAllPoints(): Point[] {
@@ -27,14 +28,10 @@ export class PointService {
 
   checkPointInArea(point: Point) {
 
-    console.log(point)
-
-
     this.http.post(this.host + this.url, point, {
       // @ts-ignore
       headers: new HttpHeaders().set('Authorization', "Bearer " + localStorage.getItem("auth_token")),
-      // @ts-ignore
-    }).subscribe(resp => this.points.push(resp))
+    }).subscribe();
   }
 
 }

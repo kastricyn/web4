@@ -10,14 +10,14 @@ import {PointService} from "../../service/point.service";
 })
 export class ResultTableComponent implements OnInit {
   displayedColumns: string[] = ['x', 'y', 'r', 'result'];
-  dataSource:Point[];
+  dataSource: Point[];
 
   constructor(private pointService: PointService) {
-    this.dataSource = pointService.getAllPoints();
+    this.dataSource = pointService.points;
   }
 
   ngOnInit(): void {
-
+    setInterval(() => this.dataSource = this.pointService.getAllPoints(), 250)
   }
 
 
