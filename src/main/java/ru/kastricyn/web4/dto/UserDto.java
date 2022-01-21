@@ -9,11 +9,22 @@ import java.io.Serializable;
 public abstract class UserDto implements Serializable {
     @Getter
     @Setter
-    public static class In {
+    public static class In implements Cloneable{
         @NotBlank
         private String login;
         @NotBlank
         private String password;
+
+        @Override
+        public In clone() {
+            try {
+                In clone = (In) super.clone();
+                // TODO: copy mutable state here, so the clone can't change the internals of the original
+                return clone;
+            } catch (CloneNotSupportedException e) {
+                throw new AssertionError();
+            }
+        }
     }
 
     @Getter

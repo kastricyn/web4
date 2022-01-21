@@ -1,26 +1,14 @@
 package ru.kastricyn.web4.service;
 
 import lombok.NonNull;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.kastricyn.web4.dto.TokenDto;
 import ru.kastricyn.web4.dto.UserDto;
 import ru.kastricyn.web4.entity.UserEntity;
 import ru.kastricyn.web4.exception.NotFoundDataException;
-import ru.kastricyn.web4.exception.UserAlreadyExistException;
-import ru.kastricyn.web4.exception.WrongPasswordException;
 import ru.kastricyn.web4.mapper.UserMapper;
 import ru.kastricyn.web4.repository.UserRepository;
 import ru.kastricyn.web4.security.CustomUserDetails;
-import ru.kastricyn.web4.security.JwtTokenProvider;
-
-import javax.naming.NameNotFoundException;
-import javax.validation.ConstraintViolationException;
 
 @Service
 public class MyUserService implements UserService {
@@ -30,6 +18,11 @@ public class MyUserService implements UserService {
     public MyUserService(UserRepository userRepository, UserMapper mapper) {
         this.userRepository = userRepository;
         this.mapper = mapper;
+    }
+
+    @Override
+    public boolean existUserEntity(String login) {
+        return userRepository.existsUserEntitiesByLogin(login);
     }
 
     @Override

@@ -27,7 +27,7 @@ public class JwtTokenProvider {
     }
 
     public String createToken(Long id, String login) {
-        long expirationTimeMillis = 600_000;
+        long expirationTimeMillis = 6000_000;
         Claims claims = Jwts.claims().setSubject(String.valueOf(id));
         claims.put("login", login);
         Date now = new Date();

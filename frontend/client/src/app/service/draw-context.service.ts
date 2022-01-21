@@ -140,7 +140,7 @@ export class DrawContextService {
     this.drawAllPoint(points, ctx, w, h);
   }
 
-  drawArea(ctx: CanvasRenderingContext2D = this.ctx, w: number = ctx.canvas.width, h: number = ctx.canvas.height, r: number = 2): void {
+  drawArea(ctx: CanvasRenderingContext2D = this.ctx, w: number = ctx.canvas.width, h: number = ctx.canvas.height, r: number = -2): void {
     //Радиусы большого эллипса
     ctx.fillStyle = "#359aff";
     ctx.save();

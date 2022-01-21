@@ -20,7 +20,7 @@ export class CheckAreaFormComponent implements OnInit {
     })
   }
 
-  check = (): boolean => this.checkPointService.checkPointInArea(new Point(
+  check = () => this.checkPointService.checkPointInArea(new Point(
     this.areaForm.get("xControl")?.value,
     this.areaForm.get("yControl")?.value,
     this.areaForm.get("rControl")?.value

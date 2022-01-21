@@ -9,4 +9,5 @@ import java.util.Optional;
 @EnableJpaRepositories
 public interface UserRepository extends CrudRepository<UserEntity, Long> {
     Optional<UserEntity> findByLogin(String login);
+    boolean existsUserEntitiesByLogin(String login);
 }

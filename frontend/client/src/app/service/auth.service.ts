@@ -11,60 +11,50 @@ export class AuthService {
   get answerToUser(): string {
     return this._answerToUser;
   }
+
   private readonly host: string = "http://localhost:8080/";
   private readonly url: string = "api/users/login";
   private readonly urlTest: string = "echo";
   private _authenticated: boolean = false;
-  private _user: User = new User("", "")
+  private _user: User = new User("")
   private _answerToUser: string = "";
 
   constructor(private http: HttpClient, private router: Router) {
   }
 
-  authenticate(credentials: { login: string; password: string; } | undefined, callback: { (): void; (): any; } | undefined) {
-    this.register(credentials, ()=>null);
+  authenticate(credentials: { login: string; password: string; } | undefined, callback: { (): void; (): any; } | undefined): number {
+    let answerCode = 0
     console.log("login start")
     const headers = new HttpHeaders(credentials ? {
       authorization: 'Basic ' + btoa(credentials.login + ':' + credentials.password)
     } : {});
 
-    this.http.post(this.host + 'api/users/login', credentials, {headers: headers}).subscribe(response => {
+    this.http.post(this.host + 'api/users/loginWithRegister', credentials).subscribe(response => {
       // @ts-ignore
       if (response["token"]) {
-        this._answerToUser = ""
+        this.user.login = credentials?.login ? credentials.login : ""
+
         this._authenticated = true;
+        // @ts-ignore
+        co.setItem('auth_token', response.token);
+
       } else {
         this._authenticated = false;
       }
       return callback && callback();
     }, error => {
-      if(error.status == 400)
-        this._answerToUser = "Проверьте корректность Login & Password"
+        answerCode = error.status
+      console.log(error.status)
     });
-
+    return answerCode;
   }
-  register(credentials: { login: string; password: string; } | undefined, callback: { (): void; (): any; } | undefined) {
-    console.log("Register start")
-    this.http.post(this.host + 'api/users/register', credentials).subscribe(response => {
-      // @ts-ignore
-      if (response["token"]) {
-        this._answerToUser = ""
-        this._authenticated = true;
-      } else {
-        this._authenticated = false;
-      }
-      return callback && callback();
-    }, error => {
-      if(error.status == 400)
-        this._answerToUser = error.error["message"]
-    });
 
-  }
   logout(): void {
-    this.http.post('logout', {}).pipe(finalize(() => {
+    this.http.post('/logout', {}).pipe(finalize(() => {
       this._authenticated = false;
       this.router.navigateByUrl('/login');
     })).subscribe();
+    localStorage.removeItem('auth_token');
   }
 
 
@@ -73,8 +63,7 @@ export class AuthService {
   }
 
   get user(): User {
-    // return this._user;
-    return new User("123", "Макс")
+    return this._user;
   }
 
 }

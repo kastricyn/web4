@@ -9,35 +9,20 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  showMessage: string = ""
+  showMessageCheckLoginOrPassword: boolean = false
   credentials = {login: '', password: ''};
-  needRegister: boolean = false
 
   constructor(private authService: AuthService, private http: HttpClient, private router: Router) {
   }
 
   clickHandler() {
-    let success = true
-    if (this.needRegister)
-      success = this.regiser()
-    if (success)
-      this.login()
-  }
-
-  login() {
-    this.authService.authenticate(this.credentials, () => {
+    let httpCode: number = this.authService.authenticate(this.credentials, () => {
       if (this.authService.authenticated)
         this.router.navigateByUrl('');
-      this.showMessage = this.authService.answerToUser
     });
-    return false;
-  }
-
-  regiser(): boolean {
-    this.authService.register(this.credentials, ()=>{
-
-    });
-    return false;
+    console.log(httpCode)
+    if (httpCode == 401)
+      this.showMessageCheckLoginOrPassword = true
   }
 
 }

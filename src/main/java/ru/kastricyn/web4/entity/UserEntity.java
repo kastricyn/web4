@@ -23,7 +23,7 @@ import java.util.Objects;
 @Table(name = "WEB4_USERS")
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private long id;
 
     @Column(nullable = false, unique = true)

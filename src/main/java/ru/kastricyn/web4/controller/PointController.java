@@ -28,12 +28,12 @@ public class PointController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<PointDto> getAllShots() {
+    public List<PointDto> getAllPoints() {
         return pointService.getAllByCurrentUser();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public PointDto createShot(@RequestBody @Valid NewPointDto point) {
+    public PointDto addPoint(@RequestBody @Valid NewPointDto point) {
         return pointService.addPoint(point);
     }
 }

@@ -11,6 +11,8 @@ import javax.naming.NameNotFoundException;
 
 public interface UserService {
 
+    boolean existUserEntity(String login);
+
     @NonNull
     UserEntity getUserEntity(long userId);
 

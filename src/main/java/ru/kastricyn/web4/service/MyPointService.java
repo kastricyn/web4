@@ -4,15 +4,11 @@ import lombok.NonNull;
 import org.springframework.stereotype.Service;
 import ru.kastricyn.web4.dto.NewPointDto;
 import ru.kastricyn.web4.dto.PointDto;
-import ru.kastricyn.web4.entity.PointEntity;
-import ru.kastricyn.web4.entity.UserEntity;
 import ru.kastricyn.web4.mapper.PointMapper;
 import ru.kastricyn.web4.repository.PointRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static java.lang.Math.abs;
 
 @Service
 public class MyPointService implements PointService {

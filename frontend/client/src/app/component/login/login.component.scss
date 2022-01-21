@@ -5,15 +5,19 @@
   align-items: center; // выравнивает по вертикали
   justify-content: center; //выравнивает по горизонтали
 
+  span {
+    margin: 10px;
+    color: red;
+    font-weight: bolder;
+  }
+
   form {
-    span {
-      color: red;
-      font-weight: bolder;
-    }
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin: auto;
+    margin-top: 15px;
+
     * {
       margin: auto;
     }
