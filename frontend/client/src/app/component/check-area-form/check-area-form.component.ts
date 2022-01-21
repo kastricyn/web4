@@ -9,6 +9,8 @@ import {Point} from "../../model/point";
   styleUrls: ['./check-area-form.component.scss']
 })
 export class CheckAreaFormComponent implements OnInit {
+  public startR:string = "2"
+
   get checkPointService(): PointService {
     return this._pointService;
   }
@@ -31,6 +33,7 @@ export class CheckAreaFormComponent implements OnInit {
   ))
 
   ngOnInit(): void {
+    this.areaForm.get("rControl")?.setValue(this.startR)
     this.areaForm.statusChanges.subscribe((status) => {
       this.canCheck = "VALID" === status
     });

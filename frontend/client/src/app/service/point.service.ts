@@ -6,7 +6,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
   providedIn: 'root'
 })
 export class PointService {
-  private readonly host: string = "http://localhost:8080/";
+  private readonly host: string = "";
   private readonly url: string = "api/points";
   private _currentPoint: Point = new Point(0, 0, 2)
 

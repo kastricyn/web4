@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {DrawContextService} from "../../service/draw-context.service";
+import {CoordinateTransform, DrawContextService} from "../../service/draw-context.service";
 import {PointService} from "../../service/point.service";
+import {Point} from "../../model/point";
 
 @Component({
   selector: 'app-check-area',
@@ -26,8 +27,15 @@ export class CheckAreaComponent implements OnInit {
 
   }
 
-  checkPoint() {
-
+  // @ts-ignore
+  checkPoint(event) {
+    const r = this.pointService.currentPoint.r
+    const prevX = event.offsetX;
+    const prevY = event.offsetY;
+    // @ts-ignore
+    const {x, y} = new CoordinateTransform(r, this.drawer?.width, this.drawer?.height).getUserCoordinateFromPixelsInJSAxes(prevX, prevY);
+    if(Math.abs(x)<=5 && y>=-3 &&y<=5)
+      this.pointService.checkPointInArea(new Point(x, y, r));
   }
 
 }

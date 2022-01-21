@@ -1,3 +1,5 @@
+server:
+  port: 21420
 spring:
   datasource:
     url: jdbc:oracle:thin:@localhost:1521:orbis
@@ -9,7 +11,7 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: update
-    show-sql: true
+#    show-sql: true
   security:
     ignored:
       - "*.bundle.*"

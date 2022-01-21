@@ -196,7 +196,7 @@ export class DrawContextService {
 // window.onload = setTimeout(draw, 50);
 // setInterval(draw, 250);
 
-class CoordinateTransform {
+export class CoordinateTransform {
   private _r: number
   private _w: number
   private _h: number

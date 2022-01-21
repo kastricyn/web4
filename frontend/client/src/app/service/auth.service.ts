@@ -12,7 +12,7 @@ export class AuthService {
     return this._answerToUser;
   }
 
-  private readonly host: string = "http://localhost:8080/";
+  private readonly host: string = "";
   private _authenticated: boolean = false;
   private _user: User = new User("")
   private _answerToUser: string = "";
