@@ -23,8 +23,8 @@ import {CheckAreaFormComponent} from './component/check-area-form/check-area-for
 import {PointService} from "./service/point.service";
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'main'},
-  {path: 'main', component: HomeComponent},
+  {path: '', pathMatch: 'full', redirectTo: 'home'},
+  {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent}
 ];
 

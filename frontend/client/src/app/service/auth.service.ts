@@ -1,33 +1,58 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {User} from "../model/user";
+import {finalize} from "rxjs";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  authenticated = true;
-
-  constructor(private http: HttpClient) {
+  get answerToUser(): string {
+    return this._answerToUser;
   }
 
-  authenticate(credentials: { username: any; password: any; } | undefined, callback: { (): void; (): any; } | undefined) {
+  private readonly host: string = "";
+  private _authenticated: boolean = false;
+  private _user: User = new User("")
+  private _answerToUser: string = "";
 
-    const headers = new HttpHeaders(credentials ? {
-      authorization : 'Basic ' + btoa(credentials.username + ':' + credentials.password)
-    } : {});
+  constructor(private http: HttpClient, private router: Router) {
+  }
 
-    this.http.get('user', {headers: headers}).subscribe(response => {
+  authenticate(credentials: { login: string; password: string; } | undefined, callback: { (): void; (): any; } | undefined) {
+
+    this.http.post(this.host + 'api/users/loginWithRegister', credentials).subscribe(response => {
       // @ts-ignore
-      if (response['name']) {
-        this.authenticated = true;
+      if (response["token"]) {
+        this.user.login = credentials?.login ? credentials.login : ""
+        this._authenticated = true;
+        // @ts-ignore
+        localStorage.setItem('auth_token', response.token);
       } else {
-        this.authenticated = false;
+        this._authenticated = false;
       }
       return callback && callback();
+    }, error => {
+      return callback && callback();
     });
-
   }
 
+  logout(): void {
+    this.http.post('/logout', {}).pipe(finalize(() => {
+      this._authenticated = false;
+      this.router.navigateByUrl('/login');
+    })).subscribe();
+    localStorage.removeItem('auth_token');
+  }
+
+
+  get authenticated(): boolean {
+    return this._authenticated;
+  }
+
+  get user(): User {
+    return this._user;
+  }
 
 }

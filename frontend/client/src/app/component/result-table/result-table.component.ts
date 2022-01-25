@@ -1,10 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Point} from "../../model/point";
+import {PointService} from "../../service/point.service";
 
-const points : Point[] = [
-  {x:1, y:1, r:1, result:true},
-  {x:1, y:0, r:0, result:false},
-]
 
 @Component({
   selector: 'app-result-table',
@@ -13,10 +10,15 @@ const points : Point[] = [
 })
 export class ResultTableComponent implements OnInit {
   displayedColumns: string[] = ['x', 'y', 'r', 'result'];
-  dataSource = points;
-  constructor() { }
+  dataSource: Point[];
+
+  constructor(private pointService: PointService) {
+    this.dataSource = pointService.points;
+  }
 
   ngOnInit(): void {
+    setInterval(() => this.dataSource = this.pointService.getAllPoints(), 250)
   }
+
 
 }

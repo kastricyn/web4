@@ -13,13 +13,28 @@ header {
     margin-left: 10px;
   }
 
-  address, .logOut {
+  .logOut {
     position: absolute;
     top: 16px;
     right: 10px;
   }
+  @media (min-width: 835px) {
+    address {
+      position: absolute;
+      top: 16px;
+      right: 10px;
+    }
+  }
 
   .variant {
     text-align: center;
+  }
+}
+
+@media (max-width: 834px) {
+  address {
+    position: absolute;
+    top: 32px;
+    right: 10px;
   }
 }

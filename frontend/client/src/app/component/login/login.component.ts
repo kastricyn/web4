@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from "../../service/auth.service";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
@@ -9,16 +9,23 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  credentials = {username: '', password: ''};
+  showMessageCheckLoginOrPassword: boolean = false
+  credentials = {login: '', password: ''};
 
-  constructor(private app: AuthService, private http: HttpClient, private router: Router) {
+  constructor(private authService: AuthService, private http: HttpClient, private router: Router) {
   }
 
-  login() {
-    this.app.authenticate(this.credentials, () => {
-      this.router.navigateByUrl('/');
+  clickHandler() {
+    this.authService.authenticate(this.credentials, () => {
+      if (this.authService.authenticated)
+        this.router.navigateByUrl('');
+      else{
+        this.showMessageCheckLoginOrPassword = true
+        // this.router.navigateByUrl('/login');
+      }
     });
-    return false;
+
+
   }
 
 }

@@ -1,13 +1,13 @@
-<header *ngIf="!isAuth">
+<header *ngIf="!authService.authenticated">
   <address>
     Выполнил: Кастрицын Максим Игоревич
   </address>
   <p class="variant">Вариант №4072</p>
 </header>
-<header *ngIf = "isAuth">
-  <span class="logOut">
+<header *ngIf = "authService.authenticated">
+  <button (click)="authService.logout()" class="logOut">
     Выйти
-  </span>
-  <p>Добро пожаловать, {{user.name}}!</p>
+  </button>
+  <p>Добро пожаловать, {{authService.user.login}}!</p>
 </header>
 
