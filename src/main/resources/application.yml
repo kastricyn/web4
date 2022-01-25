@@ -3,8 +3,8 @@ server:
 spring:
   datasource:
     url: jdbc:oracle:thin:@localhost:1521:orbis
-    username: s311734
-    password: gul991
+    username: ${DBuser}
+    password: ${DBpassword}
     driver-class-name: oracle.jdbc.OracleDriver
   jpa:
     hibernate:
